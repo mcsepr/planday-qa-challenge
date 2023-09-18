@@ -1,0 +1,22 @@
+{
+  "name": "planday-qa-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcsepr/planday-qa-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcsepr/planday-qa-challenge/issues"
+  },
+  "homepage": "https://github.com/mcsepr/planday-qa-challenge#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.38.0",
+    "@types/node": "^20.6.2"
+  }
+}
