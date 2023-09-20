@@ -1,15 +1,17 @@
 {
   "name": "planday-qa-challenge",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "description": "E2E automated tests for Planday QA Challenge",
+  "scripts": {
+    "chrome": "playwright test --project=Chromium",
+    "e2e": "playwright test --config=e2e.config.ts --project=chromium"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mcsepr/planday-qa-challenge.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Matyas Csepregi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mcsepr/planday-qa-challenge/issues"
@@ -18,5 +20,8 @@
   "devDependencies": {
     "@playwright/test": "^1.38.0",
     "@types/node": "^20.6.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }
