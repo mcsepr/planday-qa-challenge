@@ -11,6 +11,7 @@ export class SchedulePage {
         this._expect = new Expect(this._page)
     }
 
+    //TO-DO: Add verification of main elements
     public async verify(){
         await this._expect.pageToHaveURL('/schedule');
     }

@@ -22,7 +22,6 @@ export class HomePage {
     }
 
     public async selectMenuOption(menuOption: string){
-        //await this._expect.elementByTextToBeVisible(menuOption)
         await this._page.locator(`[href*="${menuOption}"]`).first().click()
     }
 }
