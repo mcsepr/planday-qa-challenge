@@ -21,17 +21,17 @@ export class SchedulePage {
         await this._pickDate(date)
         await this._verifyShiftModal()
         await this._createShift()
-        await this._approveAllShifts()
+        await this._approveExistingShifts()
     }
 
     private async _deleteExistingShifts(){
-        await this._page.locator('text=Today').first().click() //Click 'Today' to center the calendar
+        await this._page.getByText('Today', { exact: true }).first().click() //Click 'Today' to center the calendar
         let numberOfExistingShifts = await this._page.locator('.shift-tile__inner').count()
         if (numberOfExistingShifts > 0) {
             for (let i = 0; i < numberOfExistingShifts; i++) {
                 const box = await this._page.locator('.shift-tile__inner').locator(`nth=${i}`).boundingBox()
                 if ( box != null ) {
-                    await this._page.mouse.click(box.x + box.width / 2, box.y + 1)
+                    await this._page.mouse.click(box.x + box.width - 1, box.y + 1)
                     await this._expect.elementToBeVisible('.edit-shift-modal')
                     await this._page.getByText('Delete', { exact: true }).click()
                     await this._expect.elementByTextToBeVisible('Delete shift')
@@ -47,6 +47,8 @@ export class SchedulePage {
     }
 
     private async _pickDate(date: string){
+        await this._expect.elementToBeHidden('.edit-shift-modal')
+        await this._page.getByText('Today', { exact: true }).first().click() //Click 'Today' to center the calendar
         let columnNumber: number
         switch(date){
             case 'yesterday':
@@ -63,7 +65,6 @@ export class SchedulePage {
                 console.log('invalid date')
                 break
         }
-        await this._page.getByText('Today', { exact: true }).first().click() //Click 'Today' to center the calendar
         const gridToClick = `div.virtualized-board__row.virtualized-board__row--last > div:nth-child(${columnNumber})`
         await this._page.locator(gridToClick).hover() //Hover to verify that the blue icon appears
         await this._expect.elementToBeVisible(`${gridToClick} > div > div > div > svg > use`)
@@ -101,15 +102,18 @@ export class SchedulePage {
         await this._page.locator('.edit-shift-modal__footer-buttons-wrapper > li:nth-child(2) > button').click() //Create shift
     }
 
-    private async _approveAllShifts(){
+    private async _approveExistingShifts(){
         await this._page.locator('text=Today').first().click() //Click 'Today' to center the calendar
         let numberOfExistingShifts = await this._page.locator('.shift-tile__inner').count()
         if (numberOfExistingShifts > 0) {
             for (let i = 0; i < numberOfExistingShifts; i++) {
                 const box = await this._page.locator('.shift-tile__inner').locator(`nth=${i}`).boundingBox()
                 if ( box != null ) {
-                    await this._page.mouse.click(box.x + box.width / 2, box.y + 1)
+                    await this._page.mouse.click(box.x + box.width - 1, box.y + 1)
+                    await this._expect.elementToBeVisible('.edit-shift-modal')
                     await this._page.locator('.switch__knob').click()
+                    await this._page.getByText('Save', { exact: true }).click()
+                    await this._expect.elementToBeHidden('.edit-shift-modal')
                 }
             }
         }

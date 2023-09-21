@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
   fullyParallel: true,
-  retries:  0,
+  retries:  1,
   workers: 1,
 
   reporter: [
@@ -11,7 +11,7 @@ export default defineConfig({
 
   use: {
     headless: true,
-    viewport: { width: 1280, height: 720},
+    viewport: { width: 1920, height: 1080},
     actionTimeout: 15000,
     ignoreHTTPSErrors: true,
     screenshot: 'only-on-failure',
