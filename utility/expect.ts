@@ -7,9 +7,10 @@ export default class Expect {
     this._page = page
   }
 
-  async textToBeVerifiedByText(text: string){
-    const element = await this._page.locator(`text=${text}`)
-    expect(await element.innerText()).toBe(text)
+  async elementByTextToBeVisible(text: string){
+    const element = await this._page.getByText(text, { exact: true }).first()
+    expect(await element).toBeVisible()
+    expect(await element.innerText()).toContain(text)
   }
  
   async textToBeVerifiedBeforeTimeout(selector: string, text: string, timeOut_s = 5) {
@@ -17,7 +18,7 @@ export default class Expect {
     expect(await element.innerText()).toBe(text)
   }
 
-  async textToBeVerified(selector: string, text: string) {
+  async elementToContainText(selector: string, text: string) {
     const element = await this._page.locator(selector)
     expect(await element.innerText()).toContain(text)
   }
@@ -61,5 +62,9 @@ export default class Expect {
   async elementToBeChecked(selector: string){
     const element = await this._page.locator(selector)
     await expect(element.isChecked()).toBeTruthy()
+  }
+
+  async pageToHaveURL(url: string){
+    await expect(this._page.url()).toContain(url)
   }
 }

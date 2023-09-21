@@ -4,7 +4,7 @@
   "description": "E2E automated tests for Planday QA Challenge",
   "scripts": {
     "chrome": "playwright test --project=Chromium",
-    "e2e": "playwright test --config=e2e.config.ts --project=chromium"
+    "e2e": "playwright test e2e --config=e2e.config.ts --project=chromium"
   },
   "repository": {
     "type": "git",
