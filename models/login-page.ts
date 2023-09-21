@@ -1,8 +1,8 @@
 import { Page } from '@playwright/test'
 import Expect from '../utility/expect'
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'
 
-dotenv.config({ override: true });
+dotenv.config({ override: true })
 
 export class LoginPage {
     readonly _page: Page
@@ -33,6 +33,6 @@ export class LoginPage {
         await this._page.locator('#Username').fill(username != null ? username : String(process.env.USERNAME))
         await this._page.locator('#Password').fill(password != null ? password : String(process.env.PASSWORD))
         await this._page.locator('#MainLoginButton').click()
-        await this._expect.pageToHaveURL('/home');
+        await this._page.waitForURL('**/home')
     }
 }

@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { Page, expect } from "@playwright/test"
 
 export default class Expect {
   private _page: Page

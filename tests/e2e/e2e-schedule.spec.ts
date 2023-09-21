@@ -1,7 +1,7 @@
 import { test } from '@playwright/test'
 import { SchedulePage } from "../../models/schedule-page"
 import { LoginPage } from '../../models/login-page'
-import { HomePage } from '../../models/home-page';
+import { HomePage } from '../../models/home-page'
 
 test.describe("Schedule", () => {
     test.setTimeout(600 * 1000) //1min
@@ -28,4 +28,4 @@ test.describe("Schedule", () => {
             await page.close()
         })
     }
-});
+})

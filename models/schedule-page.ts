@@ -13,7 +13,7 @@ export class SchedulePage {
 
     //TO-DO: Add verification of main elements
     public async verify(){
-        await this._expect.pageToHaveURL('/schedule');
+        await this._expect.pageToHaveURL('/schedule')
     }
 
     public async scheduleShiftForDate(date: string){

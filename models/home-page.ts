@@ -11,7 +11,7 @@ export class HomePage {
     }
     
     public async verify(){
-        await this._expect.pageToHaveURL('/home');
+        await this._expect.pageToHaveURL('/home')
         await this._expect.elementToBeVisible('#root > div > header')
         await this._expect.elementToBeVisible('#container-dashboard > div > div > div > h1')
         await this._expect.elementToContainText('#container-dashboard > div > div > div > h1', 'Hi')
